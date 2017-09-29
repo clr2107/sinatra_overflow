@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
-  # Remember to create a migration!
   validates :email, { presence: true, uniqueness: true }
-  validates :password, :first_name, :last_name, { presence: true }
+  validates :hashed_password, :username, { presence: true }
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
-  has_many :lists
-  has_many :tasks, through: :lists
+
+  has_many :questions
+  has_many :answers
+  has_many :comments, as: :commentable
+  has_many :votes, as: :votable
 
   def password
     @password ||= BCrypt::Password.new(hashed_password)
@@ -17,9 +19,7 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email, password)
     user = User.find_by(email: email)
-    return nil unless user
-
-    if user.password == password
+    if user && user.password == password
       return user
     else
       return nil
