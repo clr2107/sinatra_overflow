@@ -20,6 +20,7 @@ require "sinatra/reloader" if development?
 
 require 'bcrypt'
 require 'pry'
+require 'pry-byebug'
 
 require 'erb'
 
