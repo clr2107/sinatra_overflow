@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :email, { presence: true, uniqueness: true }
-  validates :hashed_password, :first_name, :last_name, { presence: true }
+  validates :first_name, :last_name, { presence: true }
+  validates :hashed_password, { presence: true }
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   has_many :questions
