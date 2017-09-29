@@ -4,15 +4,18 @@ source 'https://rubygems.org'
 gem 'pg'
 
 # Sinatra driver
-gem 'sinatra', '~> 1.0'
+gem 'sinatra'
 gem 'sinatra-contrib'
 
-gem 'activesupport', '~>5.1.0'
-gem 'activerecord', '~>5.1.0'
+gem 'activesupport', '~>4.2.0'
+gem 'activerecord', '~>4.2.0'
 
 gem 'rake'
 
-gem 'shotgun', '~>0.9.1'
+gem 'shotgun'
+
+gem 'bcrypt'
+gem 'pry'
 
 group :test do
   gem 'shoulda-matchers'
