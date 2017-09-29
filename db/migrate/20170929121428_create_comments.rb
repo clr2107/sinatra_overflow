@@ -1,8 +1,8 @@
-class CreateComments < ActiveRecord::Migration[5.1]
+class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
       t.string :comment_text
-      t.integer :commentable_type
+      t.string :commentable_type
       t.integer :commentable_id
       t.integer :user_id, { null: false }
       t.timestamps

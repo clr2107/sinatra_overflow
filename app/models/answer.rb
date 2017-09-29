@@ -1,11 +1,9 @@
-class Answer < ApplicationRecord
+class Answer < ActiveRecord::Base
   validates :answer_text, { presence: true }
-  validates :user
-  validates :question
 
   belongs_to :question
   belongs_to :user
-  has_many :comments
-  has_many :votes
+  has_many :comments, as: :commentable
+  has_many :votes, as: :votable
 
 end

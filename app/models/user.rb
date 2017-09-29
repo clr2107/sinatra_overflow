@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   validates :email, { presence: true, uniqueness: true }
-  validates :hashed_password, :username { presence: true }
+  validates :hashed_password, :username, { presence: true }
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   has_many :questions
   has_many :answers
-  has_many :comments, :as => :commentable
-  has_many :votes, :as => :votable
+  has_many :comments, as: :commentable
+  has_many :votes, as: :votable
 
   def password
     @password ||= BCrypt::Password.new(hashed_password)
