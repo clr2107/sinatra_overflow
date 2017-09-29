@@ -133,9 +133,9 @@ namespace :db do
   end
 end
 
-desc 'Start pry with application environment loaded'
+desc 'Start irb with application environment loaded'
 task "console" do
-  exec "pry -r./config/environment"
+  exec "irb -r./config/environment"
 end
 
 

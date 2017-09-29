@@ -1,23 +1,25 @@
-users = 100.times.map do
-	User.create( :first_name => Faker::Name.first_name,
-					:last_name => Faker::Name.last_name,
-					:email => Faker::Internet.email,
-					:password => 'password')
-end
+User.create [{ :first_name => 'brad', :last_name => 'sloan', :email => 'bsloan@umich.edu', :password => 'brad'},
+             { :first_name => 'david', :last_name => 'thomas', :email => 'david@david.com', :password => 'david'},
+             { :first_name => 'jon', :last_name => 'jones', :email => 'jon@jon.com', :password => 'jon'},
+             { :first_name => 'mike', :last_name => 'smith', :email => 'mike@mike.com', :password => 'mike'}]
 
-questions = 20.times.map do
-	Questions.create( :user_id => Faker::Number(10),
-					:question => Faker::Name.RickAndMorty.quote)
-end
+Question.create [{ :question_text => 'what is love?', :user_id => 1},
+	               { :question_text => 'are you there?', :user_id => 2},
+	               { :question_text => 'sup?', :user_id => 3},
+	               { :question_text => 'sports?', :user_id => 1}]
 
-answers = 20.times.map do
-	Answers.create( :question_id => Faker::Number(10),
-					:user_id =>Faker::Number(10),
-					:answer => Faker::HowIMetYourMother.quote)
+Answer.create [{ :answer_text => 'baby dont hurt me', :user_id => 1, :question_id => 1},
+	             { :answer_text => 'nope', :user_id => 2, :question_id => 2},
+	             { :answer_text => 'nmu', :user_id => 3, :question_id => 3},
+	             { :answer_text => 'love em', :user_id => 1, :question_id => 4}]
 
-comments = 20.times.map do
-	Comments.create( :comment => Faker::LordOfTheRings.location,
-					:question_id => Faker::Number(10),
-					:answer_id => Faker::Number(10),
-					:user_id => Faker::Number(10)
-					)
+Comment.create [{ :comment_text => 'asdfsafdsafdsaf', :user_id => 1, :commentable_id => 1, :commentable_type => "Answer"},
+	              { :comment_text => 'sadfsdsdafsadf', :user_id => 2, :commentable_id => 2, :commentable_type => "Question"},
+	              { :comment_text => 'sdafasdfsdaf', :user_id => 3, :commentable_id => 3, :commentable_type => "Answer"},
+	              { :comment_text => 'ldfgdsfgdsfdsfgdsfgd', :user_id => 1, :commentable_id => 4, :commentable_type => "Question"},
+	              { :comment_text => 'asdfsafdsafdsaf', :user_id => 1, :commentable_id => 1, :commentable_type => "Answer"},
+	              { :comment_text => 'sadfsdadgffsadf', :user_id => 2, :commentable_id => 2, :commentable_type => "Question"},
+	              { :comment_text => 'sdafasddfgsfsdaf', :user_id => 3, :commentable_id => 3, :commentable_type => "Answer"},
+	              { :comment_text => 'ldfgdsffgdsfgdsfgd', :user_id => 1, :commentable_id => 4, :commentable_type => "Question"}]
+
+
