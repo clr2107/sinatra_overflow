@@ -101,7 +101,7 @@ DEPENDENCIES
   bcrypt
   capybara
   factory_girl
-  faker (~> 1.8.4)
+  faker
   pg
   pry
   pry-byebug
