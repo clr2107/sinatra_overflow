@@ -23,10 +23,11 @@ Comment.create [{ :comment_text => 'asdfsafdsafdsaf', :user_id => 1, :commentabl
 	              { :comment_text => 'sdafasddfgsfsdaf', :user_id => 3, :commentable_id => 3, :commentable_type => "Answer"},
 	              { :comment_text => 'ldfgdsffgdsfgdsfgd', :user_id => 1, :commentable_id => 4, :commentable_type => "Question"}]
 
-	Vote.create [{ :vote => 1, :votable_type => "Question", :votable_id => 1, :user_id => 1},{ :vote => 1, :votable_type => "Answer", :votable_id => 2, :user_id => 2},
-		{ :vote => 1, :votable_type => "Question", :votable_id => 3, :user_id => 3},
-		{ :vote => 1, :votable_type => "Answer", :votable_id => 4, :user_id => 4},
-		{:vote => 1, :votable_type => "Question", :votable_id => 5, :user_id => 5},
-		{:vote => 1, :votable_type => "Question", :votable_id => 6, :user_id => 6},
-		{:vote => 1, :votable_type => "Answer", :votable_id => 7, :user_id => 7},
-		{:vote => 1, :votable_type => "Answer", :votable_id => 8, :user_id => 8}]
+	Vote.create [{ :vote => 1, :votable_type => "Question", :votable_id => 1, :user_id => 1},
+							{ :vote => 1, :votable_type => "Answer", :votable_id => 2, :user_id => 2},
+							{ :vote => 1, :votable_type => "Question", :votable_id => 3, :user_id => 3},
+							{ :vote => 1, :votable_type => "Answer", :votable_id => 4, :user_id => 4},
+							{:vote => 1, :votable_type => "Question", :votable_id => 5, :user_id => 5},
+							{:vote => 1, :votable_type => "Question", :votable_id => 6, :user_id => 6},
+							{:vote => 1, :votable_type => "Answer", :votable_id => 7, :user_id => 7},
+							{:vote => 1, :votable_type => "Answer", :votable_id => 8, :user_id => 8}]

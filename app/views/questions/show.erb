@@ -1,0 +1,82 @@
+<% if current_user %>
+  <a href= "/logout"> Log Out </a>
+  <a href= "/users/<%= current_user.id %>"> Home </a>
+
+  <div class='question-container'>
+    <h1>QUESTION: <%= @question.question_text %></h1>
+
+    <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
+    <br>
+    <span class='votes'>Votes: <%= @question.votes.count %></span>
+
+    <% if @question.user_id == current_user.id %>
+      <form action="/questions/<%= @question.id %>" method= "post" id="delete_form">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type = "submit" value = "delete">
+      </form>
+    <% end %>
+    <p>-  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  -</p>
+    <h3>Comments:</h3>
+      <form id="new_comment" method="post" action="/comments">
+        <input type="text" id="comment_text" name="comment_text" placeholder="comment_text">
+        <input type="hidden" name="question_id" value="<%= params[:id] %>">
+        <input type="hidden" name="commentable_type" value="Question">
+        <input type="hidden" name="thing_id" value="<%= params[:id] %>">
+        <input type="submit" value="submit new comment">
+      </form>
+      <% if @errors %>
+        <%= @errors %>
+      <% end %>
+    <ul>
+      <% @question.comments.each do |comment| %>
+        <li><%= comment.comment_text %></li>
+      <% end %>
+      </ul>
+  </div>
+  <p>==================================</p>
+  <h1>ANSWERS:</h1>
+  <form id="new_answer" method="post" action="/answers">
+    <input type="text" id="answer_text" name="answer_text" placeholder="answer_text">
+    <input type="hidden" name="question_id" value="<%= params[:id] %>">
+    <input type="submit" value="submit new answer">
+  </form>
+  <% if @errors %>
+    <%= @errors %>
+  <% end %>
+
+  <div class='answer-container'>
+    <ul>
+      <% @answers.each do |answer| %>
+        <li><%= answer.answer_text %></li>
+        <% if answer.user_id == current_user.id %>
+          <form action="/answers/<%=answer.id%>" method= "post" id="delete_form">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="question_id" value="<%= params[:id] %>">
+            <input type = "submit" value = "delete">
+          </form>
+        <% end %>
+
+        <h5>Comments:</h5>
+        <form id="new_comment" method="post" action="/comments">
+          <input type="text" id="comment_text" name="comment_text" placeholder="comment_text">
+          <input type="hidden" name="question_id" value="<%= params[:id] %>">
+          <input type="hidden" name="commentable_type" value="Answer">
+          <input type="hidden" name="thing_id" value="<%= answer.id %>">
+          <input type="submit" value="submit new comment">
+        </form>
+        <% if @errors %>
+          <%= @errors %>
+        <% end %>
+        <ul>
+        <% answer.comments.each do |comment| %>
+          <li><%= comment.comment_text %></li>
+        <% end %>
+      </ul>
+    <p>-  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -</p>
+    <% end %>
+    </ul>
+  </div>
+
+<% else %>
+  <h3><a href="/">Login</a></h3>
+<% end %>
