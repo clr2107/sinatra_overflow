@@ -1,6 +1,8 @@
+<body>
+
 <% if current_user %>
-  <h1><%= current_user.first_name %>'s Account</h1>
-  <a href= "/logout"> Log Out </a>
+  <h1 id="user-profile"><%= current_user.first_name %>'s Profile</h1>
+  <a id ="logout" href= "/logout"> Log Out </a>
 
   <form id="new_question" method="post" action="/questions">
     <input type="text" id="question_text" name="question_text" placeholder="question_text">
@@ -34,3 +36,4 @@
 <% else %>
   <h3><a href="/">Login</a></h3>
 <% end %>
+</div>

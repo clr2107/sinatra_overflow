@@ -1,9 +1,10 @@
+<div>
 <% if current_user %>
-  <a href= "/logout"> Log Out </a>
-  <a href= "/users/<%= current_user.id %>"> Home </a>
+ <p> <a id = "logout" href= "/logout"> Log Out </a></p>
+  <p><a id= "home" href= "/users/<%= current_user.id %>"> Home </a></p>
 
   <div class='question-container'>
-    <h1>QUESTION: <%= @question.question_text %></h1>
+    <h1 id="question">QUESTION: <%= @question.question_text %></h1>
 
     <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
     <br>
@@ -16,7 +17,8 @@
       </form>
     <% end %>
     <p>-  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  -</p>
-    <h3>Comments:</h3>
+    <div class= "comments">
+    <h5>Comments:</h5>
       <form id="new_comment" method="post" action="/comments">
         <input type="text" id="comment_text" name="comment_text" placeholder="comment_text">
         <input type="hidden" name="question_id" value="<%= params[:id] %>">
@@ -32,8 +34,10 @@
         <li><%= comment.comment_text %></li>
       <% end %>
       </ul>
+    </div>
   </div>
-  <p>==================================</p>
+
+   <div class='answer-container'>
   <h1>ANSWERS:</h1>
   <form id="new_answer" method="post" action="/answers">
     <input type="text" id="answer_text" name="answer_text" placeholder="answer_text">
@@ -44,7 +48,7 @@
     <%= @errors %>
   <% end %>
 
-  <div class='answer-container'>
+
     <ul>
       <% @answers.each do |answer| %>
         <li><%= answer.answer_text %></li>
@@ -56,6 +60,8 @@
           </form>
         <% end %>
 
+<p>-  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -</p>
+<div class="comments">
         <h5>Comments:</h5>
         <form id="new_comment" method="post" action="/comments">
           <input type="text" id="comment_text" name="comment_text" placeholder="comment_text">
@@ -67,16 +73,18 @@
         <% if @errors %>
           <%= @errors %>
         <% end %>
-        <ul>
+        <ul id="answer_comments">
         <% answer.comments.each do |comment| %>
           <li><%= comment.comment_text %></li>
         <% end %>
       </ul>
-    <p>-  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -  -  -  -  -  -  - -  -  -  -  -  -</p>
+
     <% end %>
     </ul>
   </div>
+</div>
 
 <% else %>
   <h3><a href="/">Login</a></h3>
 <% end %>
+</div>
