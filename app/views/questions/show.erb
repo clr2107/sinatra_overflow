@@ -15,12 +15,12 @@
 
     <form id="upvote" method="post" action='/questions/<%= @question.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
-      <button type="submit" name="submit_param" value="submit_value"></button>
+      <button type="submit" name="submit_param" value="submit_value">⬆</button>
     </form>
 
     <form id="downvote" method="post" action='/questions/<%= @question.id %>/downvote'>
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
-      <button type="submit" name="submit_param" value="submit_value"></button>
+      <button type="submit" name="submit_param" value="submit_value">⬇</button>
     </form>
 <!--- -->
 
