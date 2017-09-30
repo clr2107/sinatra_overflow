@@ -2,22 +2,34 @@
   <h1><%= current_user.first_name %>'s Account</h1>
   <a href= "/logout"> Log Out </a>
 
-<div class='question-container'>
-  <% @questions.each do |question| %>
-
-    <article id="<%= question.id %>">
-      <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
-        <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
-      </form>
-      <h2><a href='/questions/<%= question.id %>'><%= question.question_text %></a></h2>
-      <p>
-        <span class='author'><%= question.user.first_name %></span>
-        <a class="delete" href='/questions/<%= question.id %>'></a>
-      </p>
-    </article>
-
+  <form id="new_question" method="post" action="/questions">
+    <input type="text" id="question_text" name="question_text" placeholder="question_text">
+    <input type="submit" value="submit new question">
+  </form>
+  <% if @errors %>
+    <%= @errors %>
   <% end %>
-</div>
+
+  <div class='question-container'>
+    <% @questions.each do |question| %>
+<!--       <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
+        <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
+      </form> -->
+      <h2><a href='/question/<%= question.id %>'><%= question.question_text %></a></h2>
+
+      <span class='author'>By: <%= question.user.first_name %> <%= question.user.last_name %></span>
+      <br>
+      <span class='votes'>Votes: <%= question.votes.count %></span>
+
+      <% if question.user_id == current_user.id %>
+        <form action="/questions/<%=question.id%>" method= "post" id="delete_form">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type = "submit" value = "delete">
+        </form>
+      <% end %>
+
+    <% end %>
+  </div>
 
 <% else %>
   <h3><a href="/">Login</a></h3>

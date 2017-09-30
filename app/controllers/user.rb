@@ -20,4 +20,3 @@ get '/users/:id' do
   @questions = Question.all
   erb :'users/show'
 end
-
