@@ -7,7 +7,25 @@
 
     <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
     <br>
-    <span class='votes'>Votes: <%= @question.votes.count %></span>
+
+    <span class='votes'>Votes: <%= @question.vote_sum %></span>
+
+<!-- test -->
+
+    <form id="upvote" method="post" action='/questions/<%= @question.id %>/vote'>
+      <input type="hidden" name="question_id" value="<%= params[:id] %>">
+      <button type="submit" name="submit_param" value="submit_value"></button>
+    </form>
+
+    <form id="downvote" method="post" action='/questions/<%= @question.id %>/downvote'>
+      <input type="hidden" name="question_id" value="<%= params[:id] %>">
+      <button type="submit" name="submit_param" value="submit_value"></button>
+    </form>
+<!--- -->
+
+
+
+
 
     <% if @question.user_id == current_user.id %>
       <form action="/questions/<%= @question.id %>" method= "post" id="delete_form">
