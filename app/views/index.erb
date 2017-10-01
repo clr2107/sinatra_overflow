@@ -1,19 +1,18 @@
-<h1>Welcome to Sinatra Overflow!</h1>
+<div id="homepage">
+<h1 id="sinatra">Sinatra Overflow App</h1>
+<p><a href="/users/new">New User</a></p>
+  <h2>Log In</h2>
 
-<h2>Log In</h2>
-<h3><a href="/users/new">New User</a></h3>
-<br>
-
-<form action="/login" method= "post">
-  <label for="email_input">Email:</label>
-  <input id="email_input" name="user[email]" type="text" value="<%= @email.try(:email) %>">
-  <br>
-  <label for="password_input">Password:</label>
-  <input id="password_input" name="user[password]" type="password" value="<%= @password.try(:password) %>">
-  <br>
-  <input type = "submit" value = "Log In">
-</form>
-
+  <form id ="login-form" action="/login" method= "post">
+    <label for="email_input">Email:</label>
+    <input id="email_input" name="user[email]" type="text" value="<%= @email.try(:email) %>">
+    <br>
+    <label for="password_input">Password:</label>
+    <input id="password_input" name="user[password]" type="password" value="<%= @password.try(:password) %>">
+    <br>
+    <input type = "submit" value = "Log In">
+  </form>
+</div>
 <% if @errors %>
   <%= @errors %>
 <% end %>

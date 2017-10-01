@@ -1,12 +1,10 @@
-<body>
-
 <% if current_user %>
   <h1 id="user-profile"><%= current_user.first_name %>'s Profile</h1>
   <a id ="logout" href= "/logout"> Log Out </a>
-
+<body>
   <form id="new_question" method="post" action="/questions">
-    <input type="text" id="question_text" name="question_text" placeholder="question_text">
-    <input type="submit" value="submit new question">
+    <input type="text" id="question_text" name="question_text" placeholder="Question Text">
+    <input type="submit" value="Submit New Question">
   </form>
   <% if @errors %>
     <%= @errors %>
@@ -14,9 +12,7 @@
 
   <div class='question-container'>
     <% @questions.each do |question| %>
-<!--       <form method="post" action='/questions/<%= question.id %>/vote' class="inline">
-        <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
-      </form> -->
+
       <h2><a href='/question/<%= question.id %>'><%= question.question_text %></a></h2>
 
       <span class='author'>By: <%= question.user.first_name %> <%= question.user.last_name %></span>
@@ -31,9 +27,10 @@
       <% end %>
 
     <% end %>
-  </div>
+    </div>
 
-<% else %>
-  <h3><a href="/">Login</a></h3>
-<% end %>
-</div>
+  <% else %>
+    <h3><a href="/">Login</a></h3>
+  <% end %>
+  </div>
+</body>
