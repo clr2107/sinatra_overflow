@@ -6,6 +6,10 @@
   <div class='question-container'>
     <h1 id="question">QUESTION: <%= @question.question_text %></h1>
 
+    <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
+    <br>
+
+    <div class = "vote-wrapper">
     <form id="upvote" method="post" action='/questions/<%= @question.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
       <button id ="button" type="submit" name="submit_param" value="submit_value">⬆</button>
@@ -15,9 +19,7 @@
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
       <button id = "button" type="submit" name="submit_param" value="submit_value">⬇</button>
     </form>
-
-    <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
-    <br>
+    </div>
 
     <span class='votes'>Votes: <%= @question.vote_sum %></span>
 
@@ -43,11 +45,12 @@
     <ul>
       <% @question.comments.each do |comment| %>
         <li><%= comment.comment_text %></li>
+
       <% end %>
       </ul>
     </div>
   </div>
-
+<p>------------------------------------------------------------------------------------------</p>
    <div class='answer-container'>
   <h1>ANSWERS:</h1>
   <form id="new_answer" method="post" action="/answers">
@@ -87,6 +90,7 @@
           <li><%= comment.comment_text %></li>
         <% end %>
       </ul>
+<p>--------------------------------------------------------</p>
 
       <% end %>
       </ul>

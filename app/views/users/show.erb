@@ -17,7 +17,7 @@
 
       <span class='author'>By: <%= question.user.first_name %> <%= question.user.last_name %></span>
       <br>
-      <span class='votes'>Votes: <%= question.votes.count %></span>
+      <span class='votes'>Votes: <%= question.vote_sum %></span>
 
       <% if question.user_id == current_user.id %>
         <form action="/questions/<%=question.id%>" method= "post" id="delete_form">

@@ -14,3 +14,27 @@ delete '/comments/:id' do
   comment.destroy!
   redirect "/question/#{params[:question_id]}"
 end
+
+post '/comments/:id/vote' do
+  @vote = Vote.new(vote: 1, votable_type: "Comment", votable_id: params[:id], user_id: current_user.id)
+  @votes = Vote.where(votable_id: params[:question_id])
+  if @vote.save
+    redirect "/question/#{params[:question_id]}"
+  else
+    @errors = "Nope, try again."
+    erb :"/questions/show"
+  end
+  redirect "/questions/#{params[:id]}"
+end
+
+post '/comments/:id/downvote' do
+  @vote = Vote.new(vote: -1, votable_type: "Comment", votable_id: params[:id], user_id: current_user.id)
+  @votes = Vote.where(votable_id: params[:question_id])
+  if @vote.save
+    redirect "/question/#{params[:question_id]}"
+  else
+    @errors = "Nope, try again."
+    erb :"/questions/show"
+  end
+  redirect "/questions#{params[:id]}"
+end
