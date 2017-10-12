@@ -12,9 +12,7 @@
 
   <div class='question-container'>
     <% @questions.each do |question| %>
-
       <h2><a href='/question/<%= question.id %>'><%= question.question_text %></a></h2>
-
       <span class='author'>By: <%= question.user.first_name %> <%= question.user.last_name %></span>
       <br>
       <span class='votes'>Votes: <%= question.vote_sum %></span>
@@ -25,7 +23,6 @@
           <input type = "submit" value = "delete">
         </form>
       <% end %>
-
     <% end %>
     </div>
 

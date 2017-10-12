@@ -1,36 +1,32 @@
 <% if current_user %>
- <p> <a id = "logout" href= "/logout"> Log Out </a></p>
-  <p><a id= "home" href= "/users/<%= current_user.id %>"> Home </a></p>
+<p><a id="logout" href="/logout">Log Out</a></p>
+<p><a id="home" href="/users/<%= current_user.id %>">Home</a></p>
 
 <div>
   <div class='question-container'>
     <h1 id="question">QUESTION: <%= @question.question_text %></h1>
-
     <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
-    <br>
-
-    <div class = "vote-wrapper">
+    <br />
+    <div class="vote-wrapper">
     <form id="upvote" method="post" action='/questions/<%= @question.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
-      <button id ="button" type="submit" name="submit_param" value="submit_value">⬆</button>
+      <button id="button" type="submit" name="submit_param" value="submit_value">⬆</button>
     </form>
-
+    <br />
     <form id="downvote" method="post" action='/questions/<%= @question.id %>/downvote'>
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
-      <button id = "button" type="submit" name="submit_param" value="submit_value">⬇</button>
+      <button id="button" type="submit" name="submit_param" value="submit_value">⬇</button>
     </form>
     </div>
-
     <span class='votes'>Votes: <%= @question.vote_sum %></span>
-
     <% if @question.user_id == current_user.id %>
-      <form action="/questions/<%= @question.id %>" method= "post" id="delete_form">
+      <form action="/questions/<%= @question.id %>" method="post" id="delete_form">
         <input type="hidden" name="_method" value="DELETE">
-        <input type = "submit" value = "delete">
+        <input type="submit" value="delete">
       </form>
     <% end %>
 
-    <div class= "comments">
+    <div class="comments">
     <h5>Comments:</h5>
       <form id="new_comment" method="post" action="/comments">
         <input type="text" id="comment_text" name="comment_text" placeholder="Enter comment">
@@ -45,23 +41,21 @@
     <ul>
       <% @question.comments.each do |comment| %>
         <li><%= comment.comment_text %></li>
-
       <% end %>
       </ul>
     </div>
   </div>
-<p>------------------------------------------------------------------------------------------</p>
-   <div class='answer-container'>
-  <h1>ANSWERS:</h1>
-  <form id="new_answer" method="post" action="/answers">
-    <input type="text" id="answer_text" name="answer_text" placeholder="Enter answer">
-    <input type="hidden" name="question_id" value="<%= params[:id] %>">
-    <input type="Submit" value="Submit New Answer">
-  </form>
-  <% if @errors %>
-    <%= @errors %>
-  <% end %>
 
+  <div class='answer-container'>
+    <h1>ANSWERS:</h1>
+    <form id="new_answer" method="post" action="/answers">
+      <input type="text" id="answer_text" name="answer_text" placeholder="Enter answer">
+      <input type="hidden" name="question_id" value="<%= params[:id] %>">
+      <input type="Submit" value="Submit New Answer">
+    </form>
+    <% if @errors %>
+      <%= @errors %>
+    <% end %>
       <ul>
         <% @answers.each do |answer| %>
         <li><%= answer.answer_text %></li>
@@ -69,10 +63,10 @@
           <form action="/answers/<%=answer.id%>" method= "post" id="delete_form">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="question_id" value="<%= params[:id] %>">
-            <input type = "Submit" value = "Delete">
+            <input type="Submit" value="Delete">
           </form>
         <% end %>
-
+      </ul>
       <div class="comments">
         <h5>Comments:</h5>
         <form id="new_comment" method="post" action="/comments">
@@ -90,7 +84,6 @@
           <li><%= comment.comment_text %></li>
         <% end %>
       </ul>
-<p>--------------------------------------------------------</p>
 
       <% end %>
       </ul>
