@@ -1,11 +1,12 @@
+<container>
 <% if current_user %>
 <p><a id="logout" href="/logout">Log Out</a></p>
 <p><a id="home" href="/users/<%= current_user.id %>">Home</a></p>
 
 <div>
   <div class='question-container'>
-    <h1 id="question">QUESTION: <%= @question.question_text %></h1>
-    <span class='author'>By: <%= @question.user.first_name %> <%= @question.user.last_name %></span>
+    <h2 id="question">Question: <strong><%= @question.question_text %></strong></h2>
+    <span class='author'><%= @question.user.first_name %> <%= @question.user.last_name %></span>
     <br />
     <div class="vote-wrapper">
     <form id="upvote" method="post" action='/questions/<%= @question.id %>/vote'>
@@ -18,7 +19,7 @@
       <button id="button" type="submit" name="submit_param" value="submit_value">⬇</button>
     </form>
     </div>
-    <span class='votes'>Votes: <%= @question.vote_sum %></span>
+    <span class='votes'>Upvotes: <%= @question.vote_sum %></span>
     <% if @question.user_id == current_user.id %>
       <form action="/questions/<%= @question.id %>" method="post" id="delete_form">
         <input type="hidden" name="_method" value="DELETE">
@@ -27,7 +28,7 @@
     <% end %>
 
     <div class="comments">
-    <h5>Comments:</h5>
+    <h5>Question Comments:</h5>
       <form id="new_comment" method="post" action="/comments">
         <input type="text" id="comment_text" name="comment_text" placeholder="Enter comment">
         <input type="hidden" name="question_id" value="<%= params[:id] %>">
@@ -42,12 +43,13 @@
       <% @question.comments.each do |comment| %>
         <li><%= comment.comment_text %></li>
       <% end %>
-      </ul>
+    </ul>
     </div>
   </div>
 
   <div class='answer-container'>
-    <h1>ANSWERS:</h1>
+    <h3 id="answer-header">Answers:</h3>
+    <p><%= @answers.count %> answers </p>
     <form id="new_answer" method="post" action="/answers">
       <input type="text" id="answer_text" name="answer_text" placeholder="Enter answer">
       <input type="hidden" name="question_id" value="<%= params[:id] %>">
@@ -56,9 +58,11 @@
     <% if @errors %>
       <%= @errors %>
     <% end %>
+
       <ul>
         <% @answers.each do |answer| %>
         <li><%= answer.answer_text %></li>
+        <br />
         <% if answer.user_id == current_user.id %>
           <form action="/answers/<%=answer.id%>" method= "post" id="delete_form">
             <input type="hidden" name="_method" value="DELETE">
@@ -67,8 +71,9 @@
           </form>
         <% end %>
       </ul>
+
       <div class="comments">
-        <h5>Comments:</h5>
+        <h5>Answer Comments:</h5>
         <form id="new_comment" method="post" action="/comments">
           <input type="text" id="comment_text" name="comment_text" placeholder="Enter comment">
           <input type="hidden" name="question_id" value="<%= params[:id] %>">
@@ -76,21 +81,21 @@
           <input type="hidden" name="thing_id" value="<%= answer.id %>">
           <input type="Submit" value="Submit New Comment">
         </form>
+
         <% if @errors %>
           <%= @errors %>
         <% end %>
-        <ul id="answer_comments">
-        <% answer.comments.each do |comment| %>
-          <li><%= comment.comment_text %></li>
-        <% end %>
-      </ul>
 
+        <ul id="answer_comments">
+          <% answer.comments.each do |comment| %>
+            <li><%= comment.comment_text %></li>
+          <% end %>
+        </ul>
       <% end %>
-      </ul>
     </div>
   </div>
-
   <% else %>
     <h3><a href="/">Login</a></h3>
   <% end %>
 </div>
+</container>

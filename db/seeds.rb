@@ -1,11 +1,12 @@
 User.create [{ :first_name => 'Brad', :last_name => 'Sloan', :email => 'bsloan@umich.edu', :password => 'brad'},
              { :first_name => 'David', :last_name => 'Thomas', :email => 'david@david.com', :password => 'david'},
              { :first_name => 'Jon', :last_name => 'Jones', :email => 'jon@jon.com', :password => 'jon'},
-             { :first_name => 'Mike', :last_name => 'Smith', :email => 'mike@mike.com', :password => 'mike'}]
+             { :first_name => 'Mike', :last_name => 'Smith', :email => 'mike@mike.com', :password => 'mike'},
+           		{ :first_name => "Cat", :last_name => "Rice", :email => "cat@cat.com", :password => "cat1"}]
 
 
 Question.create [{ :question_text => 'What is CSS?', :user_id => 1},
-	               { :question_text => 'JavaScript or Ruby?', :user_id => 2},
+	               { :question_text => 'Which is better: JavaScript or Ruby?', :user_id => 2},
 	               { :question_text => 'What is an HTTP request?', :user_id => 3},
 	               { :question_text => 'How do you make a JavaScript object?', :user_id => 1}]
 
