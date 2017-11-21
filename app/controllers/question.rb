@@ -16,6 +16,7 @@ delete '/questions/:id' do
 end
 
 get '/question/:id' do
+  # binding.pry
   @question = Question.find_by(id: params[:id])
   @answers = @question.answers
   erb :'questions/show'

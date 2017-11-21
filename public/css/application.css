@@ -1,111 +1,17 @@
-/*.question-container {
-  padding-left: 20px;
-  background-color: rgba(192,192,192, 0.5);
-  border: 2px dashed black;
-  margin: 5px;
-}
 
-.answer-container {
-  background-color: rgba(192,192,192, 0.5);
-  border: 2px dashed black;
-  margin: 5px;
-  padding: 5px;
-
-}
-
-h1,h2,h3 {
-  padding-left: 10px;
-}
-
-#logout {
-  display: inline-block;
-  float: right;
-}
-
-#home {
-  display: inline-block;
-  float: left;
-  margin: 5px;
-}
-
-.answer-container #new_answer {
-  padding-left: 20px;
-}
-
-form {
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: grey;
-  margin: 5px;
-}
-
-#upvote, #downvote {
-  background-color: rgba(192,192,192, 0.5);
-  max-width: 25px;
-  padding: 0;
-}
-
-#question {
-  text-align: center;
-}
-.comments {
-  background-color: rgba(255,255,240, .75);
-  padding: 20px;
-  margin: 10px;
-}
-
-#sinatra {
-  text-align: center;
-}
-
-h1 {
-  padding-left: 10px;
-  text-decoration: underline;
-  font-family: Times New Roman;
-}
-
-a {
-  font-family: Times New Roman;
-  padding: 20px;
-}
-
-ul #answer_comments {
-  padding: 20px;
-}
-
-.votes {
-  padding-bottom: 10px;
-}
-
-#user-profile {
-  text-align: center;
-}
-
-div {
-  font-family: Garamond;
-}
-
-#homepage {
-  padding-left: 20px;
-}
-
-#login-form {
-  padding: 10px;
-  border: 2px dashed black;
-}*/
 
 div, p, h1 {
   font-family: Times;
+  line-height: 1.5;
 }
 
 #answer-box {
   border: 2px solid pink;
 }
 .question-container, .answer-container {
-  border: 2px dotted black;
-  padding: 5px;
-  margin: 5px;
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px;
 }
 
 .question-container, .comments, .answer-container {
@@ -136,6 +42,6 @@ container {
 }
 
 #homepage {
-  margin: 10px;
+  margin: 20px;
   padding: 10px;
 }
